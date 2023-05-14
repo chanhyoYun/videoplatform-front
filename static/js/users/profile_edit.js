@@ -89,6 +89,12 @@ async function handleEdit() {
     const password = response_json['password']
     const username = document.getElementById('username').value;
     const bio = document.getElementById('bio').value;
+
+    console.log(email)
+    console.log(password)
+    console.log(username)
+    console.log(bio)
+    console.log(tag)
    
     const response_edit = await fetch('http://127.0.0.1:8000/users/profile/' + user_id + '/', {
         headers:{
@@ -105,7 +111,8 @@ async function handleEdit() {
         })
     })
     console.log(response_edit)
-    location.href = 'profile.html';
+    location.href='profile.html'
+
 }
 
 const handleFollow = (followUserId) => {

@@ -32,9 +32,10 @@ window.onload = async function loadProfile() {
 
     const feedList = document.getElementById("feed_card")
     response_feeds.forEach(feed => {
+        
         // feed 가지고오기
         const newCol = document.createElement("a")
-        newCol.setAttribute("class", "col-md-3 col-sm-6 col-lg-2")
+        newCol.setAttribute("class", "feed_card_form")
         newCol.setAttribute("href", `../../feed_detail.html?id=${feed.id}`)
         const newCard = document.createElement("a")
         newCard.setAttribute("type", "button")
@@ -42,22 +43,19 @@ window.onload = async function loadProfile() {
         newCard.setAttribute("id", feed.id)
         newCol.appendChild(newCard)
 
+
         const feedImage = document.createElement("img")
         feedImage.setAttribute("class", "card-img-top")
        
+        console.log(feed['image'])
+        console.log(`${backend_base_url}${feed['image']}`)
         //video_key 확인
-        video_in = Object.keys(feed).includes('video_key')
-        console.log(video_in) //true
-        console.log(feed['video_key'])
-        if(video_in === true){
+        if(feed['video_key']){
             //video key가 있으면 썸네일 가져와서 넣어주기
             feedImage.setAttribute("src", "https://img.youtube.com/vi/" + `${feed['video_key']}` + "/mqdefault.jpg")
-        } else if(feed['image'] === true) {
+        } else if(feed['image']) {
             //image가 있으면 넣어주기
-            feedImage.setAttribute("src", `${backend_base_url}${feed.image}`)
-        } else {
-            //image가 없으면 defaultimage 넣어주기
-            feedImage.setAttribute("src", "/static/img/default_image.jpg")
+            feedImage.setAttribute("src", `${backend_base_url}${feed['image']}`)
         }
         newCard.appendChild(feedImage)
 

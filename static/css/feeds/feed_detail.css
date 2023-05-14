@@ -123,8 +123,11 @@ body {
     border-radius: 8px;
 }
 
+
+
 a {
     color: white;
+    text-decoration: none;
 }
 
 
@@ -222,4 +225,21 @@ aside {
 	height:70vh;
     padding-left: 35px;
     padding-top: 20px;
+}
+
+#feed_comments {
+    margin-top: 12;
+}
+
+.comment-div-form {
+    display: flex;
+}
+
+.comment-div-form p {
+    margin: 8px;
+}
+
+.comment_input_form {
+    margin: 12px;
+    margin-top: 24px;
 }
