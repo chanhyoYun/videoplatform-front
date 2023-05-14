@@ -24,13 +24,13 @@ window.onload = async function loadProfile() {
         tags.appendChild(user_tag)
     })
 
-    console.log(response_json)
     const follows = document.getElementById("follows")
     response_json['followers'].forEach(follow => {
         const user_follow = document.createElement("p")
         user_follow.innerText = follow['email']
         follows.appendChild(user_follow)
     })
+    console.log(response_json)
 
 }
 

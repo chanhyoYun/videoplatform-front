@@ -55,9 +55,8 @@ window.onload = async function getFeedDetail(){
     username.innerText = response_json['user']
 
     //key값에 video_key가 들어왔는지 확인
-    video_in = Object.keys(response_json).includes('video_key')
-    console.log(response_json['image'])
-    if(video_in !== null){
+    console.log(response_json['video_key'])
+    if(response_json['video_key']){
         //video 보기, video-box 위치에 입력
         const videoBox = document.getElementById('video-box');
         const feedVideo = document.createElement('iframe')
@@ -70,32 +69,21 @@ window.onload = async function getFeedDetail(){
         
         videoBox.appendChild(feedVideo);
         
-        console.log(response_json['image'])
-        //image는 무조건 있는데, default_image인지 확인
-        if (response_json['image'] === "/media/static/default_image.jpg"){
-
-        } else {
-            const imageBox = document.getElementById('image-box');
-            const feedImage = document.createElement("img")
-            feedImage.setAttribute('class', 'imagecard')
-            feedImage.setAttribute("src", `${backend_base_url}` + `${response_json['image']}`)
-            imageBox.appendChild(feedImage)
-        }
-    } else {
-        if(response_json['image'] !== null) {
-            //image가 있으면 넣어주기
-            const imageBox = document.getElementById('image-box');
-            const feedImage = document.createElement("img")
-            feedImage.setAttribute('class', 'imagecard')
-            feedImage.setAttribute("src", `${backend_base_url}` + `${response_json['image']}`)
-            imageBox.appendChild(feedImage)
-        } else {
-            //image가 없으면 defaultimage 넣어주기?
-            feedImage.setAttribute("src", "/static/img/default_image.jpg")
-        }
-        likeCount.innerText = response_json['likes_count']
-        hitCount.innerText = response_json['hits']
     }
+    //image는 무조건 있는데, default_image인지 확인
+    else{
+        console.log(response_json['image'])
+        const imageBox = document.getElementById('image-box');
+        const feedImage = document.createElement("img")
+        feedImage.setAttribute('class', 'imagecard')
+        feedImage.setAttribute("src", `${backend_base_url}` + `${response_json['image']}`)
+        imageBox.appendChild(feedImage)
+
+    }
+    likeCount.innerText = response_json['likes_count']
+    hitCount.innerText = response_json['hits']
+
+
     
     
 
@@ -113,13 +101,16 @@ window.onload = async function getFeedDetail(){
     const feed_comments = document.getElementById("feed_comments")
     response_json_comment.forEach(comment => {
         console.log(comment['user'])
+        const comment_div = document.createElement('div')
+        comment_div.setAttribute("class", "comment-div-form")
         const comment_user = document.createElement('p')
         comment_user.innerText = comment['user']
-        feed_comments.appendChild(comment_user)
+        comment_div.appendChild(comment_user)
 
         const comment_text = document.createElement('p')
         comment_text.innerText = comment['text']
-        feed_comments.appendChild(comment_text)
+        comment_div.appendChild(comment_text)
+        feed_comments.appendChild(comment_div)
     })
 }
 

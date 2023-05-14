@@ -182,10 +182,28 @@ main {
 
 #feed_card {
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px 8px;
 }
 
 .card-img-top {
         display:block;
         width:100%;
         height:auto;
+}
+
+.feed_card_form {
+    width: 200px;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+.card img {
+    width: 200px;
+    height:200PX;
+    object-fit: cover;
 }
